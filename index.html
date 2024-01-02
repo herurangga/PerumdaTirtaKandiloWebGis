@@ -24,7 +24,6 @@
         </div>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
-        <script src="js/leaflet-svg-shape-markers.min.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -33,8 +32,8 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="data/JaringanPipa_2.js"></script>
-        <script src="data/AksesorisPipa_3.js"></script>
+        <script src="data/AksesorisPipa_2.js"></script>
+        <script src="data/JaringanPipa_3.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -53,7 +52,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-1.8824169415314074,116.17863892824364],[-1.879636133990551,116.18387805265982]]);
+        }).fitBounds([[-1.9194401844971967,116.17510364912795],[-1.8943706800597844,116.22737149774679]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -98,7 +97,210 @@
         });
         layer_GoogleHybrid_1;
         map.addLayer(layer_GoogleHybrid_1);
-        function pop_JaringanPipa_2(feature, layer) {
+        function pop_AksesorisPipa_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Jenis</th>\
+                        <td>' + (feature.properties['Jenis'] !== null ? autolinker.link(feature.properties['Jenis'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Th. Pasang</th>\
+                        <td>' + (feature.properties['Th. Pasang'] !== null ? autolinker.link(feature.properties['Th. Pasang'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Foto</th>\
+                        <td>' + (feature.properties['Foto'] !== null ? autolinker.link(feature.properties['Foto'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Pjg. Pipa</th>\
+                        <td>' + (feature.properties['Pjg. Pipa'] !== null ? autolinker.link(feature.properties['Pjg. Pipa'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Diameter</th>\
+                        <td>' + (feature.properties['Diameter'] !== null ? autolinker.link(feature.properties['Diameter'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Vidio</th>\
+                        <td>' + (feature.properties['Vidio'] !== null ? autolinker.link(feature.properties['Vidio'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Keterangan</th>\
+                        <td>' + (feature.properties['Keterangan'] !== null ? autolinker.link(feature.properties['Keterangan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_AksesorisPipa_2_0(feature) {
+            switch(String(feature.properties['Jenis'])) {
+                case 'Air Valve':
+                    return {
+                pane: 'pane_AksesorisPipa_2',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/AksesorisPipa_2.svg',
+            iconSize: [38.0, 38.0]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'DOP':
+                    return {
+                pane: 'pane_AksesorisPipa_2',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Elbow':
+                    return {
+                pane: 'pane_AksesorisPipa_2',
+                shape: 'square',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Gate Valve':
+                    return {
+                pane: 'pane_AksesorisPipa_2',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/AksesorisPipa_2.svg',
+            iconSize: [38.0, 38.0]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'Reducer':
+                    return {
+                pane: 'pane_AksesorisPipa_2',
+                shape: 'triangle',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(128,17,25,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,30,42,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Tee':
+                    return {
+                pane: 'pane_AksesorisPipa_2',
+        rotationAngle: 3.1415940000000004,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/AksesorisPipa_2.svg',
+            iconSize: [26.599999999999998, 26.599999999999998]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'Butterfly Valve':
+                    return {
+                pane: 'pane_AksesorisPipa_2',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(50,87,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(72,123,182,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Lain-lain':
+                    return {
+                pane: 'pane_AksesorisPipa_2',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(128,17,25,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,30,42,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Meter Induk':
+                    return {
+                pane: 'pane_AksesorisPipa_2',
+                radius: 6.4,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_AksesorisPipa_2');
+        map.getPane('pane_AksesorisPipa_2').style.zIndex = 402;
+        map.getPane('pane_AksesorisPipa_2').style['mix-blend-mode'] = 'normal';
+        var layer_AksesorisPipa_2 = new L.geoJson(json_AksesorisPipa_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_AksesorisPipa_2',
+            layerName: 'layer_AksesorisPipa_2',
+            pane: 'pane_AksesorisPipa_2',
+            onEachFeature: pop_AksesorisPipa_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_AksesorisPipa_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_AksesorisPipa_2);
+        map.addLayer(layer_AksesorisPipa_2);
+        function pop_JaringanPipa_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (i in e.target._eventParents) {
@@ -155,13 +357,13 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_JaringanPipa_2_0(feature) {
+        function style_JaringanPipa_3_0(feature) {
             switch(String(feature.properties['Diameter'])) {
                 case '2':
                     return {
-                pane: 'pane_JaringanPipa_2',
+                pane: 'pane_JaringanPipa_3',
                 opacity: 1,
-                color: 'rgba(16,172,239,1.0)',
+                color: 'rgba(255,22,1,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -172,22 +374,9 @@
                     break;
                 case '3':
                     return {
-                pane: 'pane_JaringanPipa_2',
+                pane: 'pane_JaringanPipa_3',
                 opacity: 1,
-                color: 'rgba(225,46,55,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 4.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '6':
-                    return {
-                pane: 'pane_JaringanPipa_2',
-                opacity: 1,
-                color: 'rgba(83,87,207,1.0)',
+                color: 'rgba(44,57,236,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -198,9 +387,22 @@
                     break;
                 case '4':
                     return {
-                pane: 'pane_JaringanPipa_2',
+                pane: 'pane_JaringanPipa_3',
                 opacity: 1,
-                color: 'rgba(216,140,18,1.0)',
+                color: 'rgba(249,234,23,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case '6':
+                    return {
+                pane: 'pane_JaringanPipa_3',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -211,9 +413,9 @@
                     break;
                 case '8':
                     return {
-                pane: 'pane_JaringanPipa_2',
+                pane: 'pane_JaringanPipa_3',
                 opacity: 1,
-                color: 'rgba(55,214,46,1.0)',
+                color: 'rgba(244,0,207,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -224,9 +426,9 @@
                     break;
                 case '10':
                     return {
-                pane: 'pane_JaringanPipa_2',
+                pane: 'pane_JaringanPipa_3',
                 opacity: 1,
-                color: 'rgba(89,232,177,1.0)',
+                color: 'rgba(13,246,59,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -237,9 +439,9 @@
                     break;
                 case '300':
                     return {
-                pane: 'pane_JaringanPipa_2',
+                pane: 'pane_JaringanPipa_3',
                 opacity: 1,
-                color: 'rgba(239,50,185,1.0)',
+                color: 'rgba(20,239,239,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -250,9 +452,22 @@
                     break;
                 case '400':
                     return {
-                pane: 'pane_JaringanPipa_2',
+                pane: 'pane_JaringanPipa_3',
                 opacity: 1,
-                color: 'rgba(178,215,85,1.0)',
+                color: 'rgba(248,89,160,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case '500':
+                    return {
+                pane: 'pane_JaringanPipa_3',
+                opacity: 1,
+                color: 'rgba(208,62,0,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -263,193 +478,22 @@
                     break;
             }
         }
-        map.createPane('pane_JaringanPipa_2');
-        map.getPane('pane_JaringanPipa_2').style.zIndex = 402;
-        map.getPane('pane_JaringanPipa_2').style['mix-blend-mode'] = 'normal';
-        var layer_JaringanPipa_2 = new L.geoJson(json_JaringanPipa_2, {
+        map.createPane('pane_JaringanPipa_3');
+        map.getPane('pane_JaringanPipa_3').style.zIndex = 403;
+        map.getPane('pane_JaringanPipa_3').style['mix-blend-mode'] = 'normal';
+        var layer_JaringanPipa_3 = new L.geoJson(json_JaringanPipa_3, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_JaringanPipa_2',
-            layerName: 'layer_JaringanPipa_2',
-            pane: 'pane_JaringanPipa_2',
-            onEachFeature: pop_JaringanPipa_2,
-            style: style_JaringanPipa_2_0,
+            dataVar: 'json_JaringanPipa_3',
+            layerName: 'layer_JaringanPipa_3',
+            pane: 'pane_JaringanPipa_3',
+            onEachFeature: pop_JaringanPipa_3,
+            style: style_JaringanPipa_3_0,
         });
-        bounds_group.addLayer(layer_JaringanPipa_2);
-        map.addLayer(layer_JaringanPipa_2);
-        function pop_AksesorisPipa_3(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Jenis</th>\
-                        <td>' + (feature.properties['Jenis'] !== null ? autolinker.link(feature.properties['Jenis'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Th. Pasang</th>\
-                        <td>' + (feature.properties['Th. Pasang'] !== null ? autolinker.link(feature.properties['Th. Pasang'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Foto</th>\
-                        <td>' + (feature.properties['Foto'] !== null ? autolinker.link(feature.properties['Foto'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Pjg. Pipa</th>\
-                        <td>' + (feature.properties['Pjg. Pipa'] !== null ? autolinker.link(feature.properties['Pjg. Pipa'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Diameter</th>\
-                        <td>' + (feature.properties['Diameter'] !== null ? autolinker.link(feature.properties['Diameter'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Vidio</th>\
-                        <td>' + (feature.properties['Vidio'] !== null ? autolinker.link(feature.properties['Vidio'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Keterangan</th>\
-                        <td>' + (feature.properties['Keterangan'] !== null ? autolinker.link(feature.properties['Keterangan'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_AksesorisPipa_3_0(feature) {
-            switch(String(feature.properties['Jenis'])) {
-                case 'Air Valve':
-                    return {
-                pane: 'pane_AksesorisPipa_3',
-        rotationAngle: 0.0,
-        rotationOrigin: 'center center',
-        icon: L.icon({
-            iconUrl: 'markers/AksesorisPipa_3.svg',
-            iconSize: [38.0, 38.0]
-        }),
-                interactive: true,
-            }
-                    break;
-                case 'DOP':
-                    return {
-                pane: 'pane_AksesorisPipa_3',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(255,255,255,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(252,244,3,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'Elbow':
-                    return {
-                pane: 'pane_AksesorisPipa_3',
-                shape: 'square',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(255,255,255,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,0,0,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'Gate Valve':
-                    return {
-                pane: 'pane_AksesorisPipa_3',
-        rotationAngle: 0.0,
-        rotationOrigin: 'center center',
-        icon: L.icon({
-            iconUrl: 'markers/AksesorisPipa_3.svg',
-            iconSize: [38.0, 38.0]
-        }),
-                interactive: true,
-            }
-                    break;
-                case 'Reducer':
-                    return {
-                pane: 'pane_AksesorisPipa_3',
-                shape: 'triangle',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(128,17,25,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(219,30,42,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'Tee':
-                    return {
-                pane: 'pane_AksesorisPipa_3',
-        rotationAngle: 3.1415940000000004,
-        rotationOrigin: 'center center',
-        icon: L.icon({
-            iconUrl: 'markers/AksesorisPipa_3.svg',
-            iconSize: [26.599999999999998, 26.599999999999998]
-        }),
-                interactive: true,
-            }
-                    break;
-                default:
-                    return {
-                pane: 'pane_AksesorisPipa_3',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(96,185,205,1.0)',
-                interactive: true,
-            }
-                    break;
-            }
-        }
-        map.createPane('pane_AksesorisPipa_3');
-        map.getPane('pane_AksesorisPipa_3').style.zIndex = 403;
-        map.getPane('pane_AksesorisPipa_3').style['mix-blend-mode'] = 'normal';
-        var layer_AksesorisPipa_3 = new L.geoJson(json_AksesorisPipa_3, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_AksesorisPipa_3',
-            layerName: 'layer_AksesorisPipa_3',
-            pane: 'pane_AksesorisPipa_3',
-            onEachFeature: pop_AksesorisPipa_3,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.shapeMarker(latlng, style_AksesorisPipa_3_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_AksesorisPipa_3);
-        map.addLayer(layer_AksesorisPipa_3);
+        bounds_group.addLayer(layer_JaringanPipa_3);
+        map.addLayer(layer_JaringanPipa_3);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'Aksesoris Pipa<br /><table><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_3_AirValve0.png" /></td><td>Air Valve</td></tr><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_3_DOP1.png" /></td><td>DOP</td></tr><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_3_Elbow2.png" /></td><td>Elbow</td></tr><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_3_GateValve3.png" /></td><td>Gate Valve</td></tr><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_3_Reducer4.png" /></td><td>Reducer</td></tr><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_3_Tee5.png" /></td><td>Tee</td></tr><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_3_6.png" /></td><td></td></tr></table>': layer_AksesorisPipa_3,'Jaringan Pipa<br /><table><tr><td style="text-align: center;"><img src="legend/JaringanPipa_2_2Inch0.png" /></td><td>2 Inch</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_2_3Inch1.png" /></td><td>3 Inch</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_2_6Inch2.png" /></td><td>6 Inch</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_2_4Inch3.png" /></td><td>4 Inch</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_2_8Inch4.png" /></td><td>8 Inch</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_2_10Inch5.png" /></td><td>10 Inch</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_2_3006.png" /></td><td>(300)</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_2_4007.png" /></td><td>(400)</td></tr></table>': layer_JaringanPipa_2,"Google Hybrid": layer_GoogleHybrid_1,"Google Road": layer_GoogleRoad_0,}).addTo(map);
+        L.control.layers(baseMaps,{'Jaringan Pipa<br /><table><tr><td style="text-align: center;"><img src="legend/JaringanPipa_3_2Inch0.png" /></td><td>2 Inch</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_3_3Inch1.png" /></td><td>3 Inch</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_3_4Inch2.png" /></td><td>4 Inch</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_3_6Inch3.png" /></td><td>6 Inch</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_3_8Inch4.png" /></td><td>8 Inch</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_3_10Inch5.png" /></td><td>10 Inch</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_3_3006.png" /></td><td>(300)</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_3_4007.png" /></td><td>(400)</td></tr><tr><td style="text-align: center;"><img src="legend/JaringanPipa_3_5008.png" /></td><td>(500)</td></tr></table>': layer_JaringanPipa_3,'Aksesoris Pipa<br /><table><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_2_AirValve0.png" /></td><td>Air Valve</td></tr><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_2_DOP1.png" /></td><td>DOP</td></tr><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_2_Elbow2.png" /></td><td>Elbow</td></tr><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_2_GateValve3.png" /></td><td>Gate Valve</td></tr><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_2_Reducer4.png" /></td><td>Reducer</td></tr><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_2_Tee5.png" /></td><td>Tee</td></tr><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_2_ButterflyValve6.png" /></td><td>(Butterfly Valve)</td></tr><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_2_Lainlain7.png" /></td><td>(Lain-lain)</td></tr><tr><td style="text-align: center;"><img src="legend/AksesorisPipa_2_MeterInduk8.png" /></td><td>(Meter Induk)</td></tr></table>': layer_AksesorisPipa_2,"Google Hybrid": layer_GoogleHybrid_1,"Google Road": layer_GoogleRoad_0,}).addTo(map);
         setBounds();
         </script>
     </body>
